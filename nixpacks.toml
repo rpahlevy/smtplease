@@ -1,0 +1,16 @@
+[phases.setup]
+commands = [
+  "pip install pipenv",
+  "pipenv install --deploy --ignore-pipfile"
+]
+
+[phases.build]
+commands = [
+  "pipenv run python -m pip install fastapi uvicorn asyncpg sqlalchemy databases alembic psycopg2-binary greenlet celery redis aiosmtpd imapclient"
+]
+
+[phases.start]
+commands = [
+  "pipenv run uvicorn app.main:app --host 0.0.0.0 --port 8000"
+  "pipenv run celery -A app.worker.celery_app worker --loglevel=info"  # worker
+]
