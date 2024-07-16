@@ -2,9 +2,11 @@ from typing import List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from . import crud, models, schemas
-from .database import SessionLocal, engine
+from .database import SessionLocal
 from .worker import send_email
-# import threading
+
+import asyncio
+from .smtp_handler import run_smtp_server
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -42,6 +44,8 @@ async def read_email(email_id: int, db: AsyncSession = Depends(get_db)):
     raise HTTPException(status_code=404, detail="Email not found")
   return db_email
 
-# Start SMTP server in a separate thread
-# smtp_thread = threading.Thread(target=run_smtp_server)
-# smtp_thread.start()
+# Start SMTP server
+@app.on_event("startup")
+async def startup_event():
+  asyncio.create_task(run_smtp_server())
+# run_smtp_server()

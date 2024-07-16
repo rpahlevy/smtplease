@@ -27,7 +27,10 @@ def divide(x, y):
 @celery_app.task
 def send_email(email_data):
   logger.info(f"Received: {email_data}")
-  asyncio.run(send_email_async(email_data))
+  loop = asyncio.get_event_loop()
+  loop.run_until_complete(send_email_async(email_data))
+  # asyncio.ensure_future(send_email_async(email_data))
+  # asyncio.run(send_email_async(email_data))
 
 async def send_email_async(email_data):
   logger.info(f"will send: {email_data}")
