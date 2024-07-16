@@ -9,6 +9,8 @@ uvicorn = "*"
 asyncpg = "*"
 sqlalchemy = "*"
 databases = "*"
+celery = "*"
+redis = "*"
 
 [dev-packages]
 
