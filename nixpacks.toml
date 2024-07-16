@@ -1,8 +1,7 @@
 [phases.setup]
 providers = ["...", "python"]
 commands = [
-  "pip install pipenv",
-  "pipenv install --deploy --ignore-pipfile"
+  "PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy"
 ]
 
 [phases.build]
