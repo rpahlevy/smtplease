@@ -12,6 +12,8 @@ databases = "*"
 celery = "*"
 redis = "*"
 alembic = "*"
+psycopg2-binary = "*"
+greenlet = "*"
 
 [dev-packages]
 
