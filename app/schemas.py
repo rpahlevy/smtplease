@@ -17,3 +17,6 @@ class Email(EmailBase):
 
   class Config:
     orm_mode = True
+
+class EmailProcessingResponse(BaseModel):
+  message: str
