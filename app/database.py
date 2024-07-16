@@ -7,12 +7,12 @@ DATABASE_URL = "postgresql+asyncpg://smtplease:sendplease@localhost/smtplease_db
 engine = create_async_engine(
   DATABASE_URL,
   echo=True,
-  pool_size=20,
-  max_overflow=10
+  # pool_size=20,
+  # max_overflow=10,
 )
 SessionLocal = sessionmaker(
-  autocommit=False,
-  autoflush=False,
+  # autocommit=False,
+  # autoflush=False,
   bind=engine,
   class_=AsyncSession
 )
