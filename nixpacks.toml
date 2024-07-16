@@ -1,5 +1,5 @@
 [phases.setup]
-providers = ['...', 'python3']
+providers = ["...", "python"]
 commands = [
   "pip install pipenv",
   "pipenv install --deploy --ignore-pipfile"
