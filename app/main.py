@@ -6,7 +6,7 @@ from .database import SessionLocal
 from .worker import send_email
 
 import asyncio
-from .smtp_handler import run_smtp_server
+from .smtp_handler import run_smtp_server, imap_server
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -47,5 +47,7 @@ async def read_email(email_id: int, db: AsyncSession = Depends(get_db)):
 # Start SMTP server
 @app.on_event("startup")
 async def startup_event():
-  asyncio.create_task(run_smtp_server())
+  smtp_task = asyncio.create_task(run_smtp_server())
+  imap_server_task = await asyncio.start_server(imap_server, '0.0.0.0', 143)
+  # await asyncio.gather(smtp_task, imap_server_task.serve_forever())
 # run_smtp_server()

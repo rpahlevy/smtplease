@@ -85,7 +85,7 @@ pipenv run celery -A app.worker.celery_app worker --loglevel=info
         "body": "Test mail body"
     }
     ```
-- `GET /emails`: Retrieve all emails in the queue.
+- `GET /emails?limit=1&skip=0`: Retrieve all emails in the queue, skipping `skip` value and limiting `limit` total data.
 - `GET /emails/{email_id}`: Retrieve a specific email by its ID.
 
 ## Performance
