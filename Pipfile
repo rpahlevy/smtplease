@@ -15,7 +15,6 @@ alembic = "*"
 psycopg2-binary = "*"
 greenlet = "*"
 aiosmtpd = "*"
-imapclient = "*"
 
 [dev-packages]
 

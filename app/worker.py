@@ -44,3 +44,8 @@ async def send_email_async(email_data):
   except Exception as e:
     logger.error(f"Failed to send email: {str(e)}")
     raise
+
+# TODO. IMAP retrieval task
+# @celery_app.task
+# async def retrieve_emails():
+#   pass
