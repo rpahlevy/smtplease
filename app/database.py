@@ -3,9 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-print(os.getenv("DATABASE_URL"))
-print(os.getenv("DATABASE_PRIVATE_URL"))
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("ASYNC_DATABASE_PRIVATE_URL")
 
 engine = create_async_engine(
   DATABASE_URL,
