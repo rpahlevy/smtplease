@@ -1,3 +1,4 @@
+import os
 from celery import Celery
 from .database import SessionLocal
 from . import crud, schemas
@@ -9,8 +10,8 @@ logger = logging.getLogger(__name__)
 
 celery_app = Celery(
   "worker",
-  broker="redis://localhost:6379/0",
-  backend="redis://localhost:6379/0",
+  broker=os.getenv("REDIS_URL"),
+  backend=os.getenv("REDIS_URL"),
   broker_connection_retry_on_startup=True  # Add this line
 )
 
